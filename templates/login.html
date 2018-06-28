@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/jpg" href= "../static/img/logo.ico" />
+
+    <title>Facegram</title>
+
+    <link href="../static/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-landing">
+    <div class="col-md-4 mx-auto px-5 pt-5 pb-4 mt-5 bg-success rounded text-center" style="border: 1px solid rgb(192, 136, 53)">
+      <a href=""><img class="img-fluid" src="../static/img/logo.png"></a>
+      <br><br>
+      <form class="form-group" action="home" method="POST">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Usuario</span>
+          </div>
+          <input type="text" class="form-control" name="user">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Contraseña</span>
+          </div>
+          <input type="password" class="form-control" name="pass">
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Iniciar sesión</button>
+        <br><br><span>¿No se ha registrado? Haga clic<a href="#" class="alert-link" style="color: #f0661b"> aquí</a></span>
+        {% if error %}
+          <br><br>
+          <span class="control-label">Ha ingresado sus datos incorrectos. Favor intente nuevamente</span>
+        {% endif %}		
+      </form>
+    </div>
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+  </body>
+</html>
