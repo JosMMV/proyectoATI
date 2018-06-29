@@ -154,3 +154,40 @@ footer{
 	padding-top: 40px;
 	}
 }
+
+.icon{
+	width: 18 !important;
+	height: 18 !important;
+}
+
+.or-hr{
+	position: relative;
+	top: 19px;
+	border: 0;
+	border-top: 1px solid #e4e6e8;
+	margin-bottom: 0px;
+	height: 0;
+}
+
+#or{
+	background-color: #f4f9f5 !important;
+	display: inline-block;
+	position: relative;
+	padding: 0.37rem;
+	font-size: 14px;
+}
+
+.social-btn .btn {
+	border: none;
+	margin: 10px 3px 0;
+	opacity: 1;
+}
+.social-btn .btn:hover {
+	opacity: 0.9;
+}
+.social-btn .btn-primary {
+	background: #395697;
+}
+.social-btn .btn-info {
+	background: #1da1f2;
+}

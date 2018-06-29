@@ -45,18 +45,19 @@ def home():
 	password = request.form['pass']
 
 	usr = usuarios.find_one({ "user_name": user })
-	if usr["password"] == password:
-		users = usuarios.aggregate([
-		{"$lookup":
-			{
-				"from": "image",
-				"localField": "images._id_image",
-				"foreignField": "_id_image",
-				"as": "user_images"
+	if usr:
+		if usr["password"] == password:
+			users = usuarios.aggregate([
+			{"$lookup":
+				{
+					"from": "image",
+					"localField": "images._id_image",
+					"foreignField": "_id_image",
+					"as": "user_images"
+				}
 			}
-		}
-		])
-		return render_template('index.html', usr = usr, loged = True, usuarios = users)
+			])
+			return render_template('index.html', usr = usr, loged = True, usuarios = users)
 	return render_template('login.html', error = True)
 
 

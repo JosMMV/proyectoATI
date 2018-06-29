@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,12 +32,23 @@
           <input type="password" class="form-control" name="pass">
         </div>
         <button type="submit" class="btn btn-outline-dark">Iniciar sesión</button>
-        <br><br><span>¿No se ha registrado? Haga clic<a href="#" class="alert-link" style="color: #f0661b"> aquí</a></span>
-        {% if error %}
-          <br><br>
-          <span class="control-label">Ha ingresado sus datos incorrectos. Favor intente nuevamente</span>
-        {% endif %}		
       </form>
+      <div>
+        <hr class="or-hr">
+        <div id="or">o</div>
+      </div>
+      <div>
+        <p class="text-center">Ingresa con tu cuenta de</p>
+        <div class="text-center social-btn">
+            <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+            <a href="#" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
+          </div>
+      </div>
+      <br><p class="text-center small" style="color: #f0661b">¿No se ha registrado? Haga clic <a href="#">aquí</a></p>
+      {% if error %}
+        <br><br>
+        <span class="control-label text-danger"><strong>Ha ingresado sus datos incorrectos. Favor intente nuevamente</strong></span>
+      {% endif %}		
     </div>
 
     <script src="../static/js/jquery-3.3.1.min.js"></script>
