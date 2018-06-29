@@ -7526,7 +7526,7 @@ button.bg-dark:focus {
 
 .mb-4,
 .my-4 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.9rem !important;
 }
 
 .ml-4,
@@ -7816,7 +7816,7 @@ button.bg-dark:focus {
   }
   .mb-sm-4,
   .my-sm-4 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.9rem !important;
   }
   .ml-sm-4,
   .mx-sm-4 {
@@ -8066,7 +8066,7 @@ button.bg-dark:focus {
   }
   .mb-md-4,
   .my-md-4 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.9rem !important;
   }
   .ml-md-4,
   .mx-md-4 {
@@ -8316,7 +8316,7 @@ button.bg-dark:focus {
   }
   .mb-lg-4,
   .my-lg-4 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.9rem !important;
   }
   .ml-lg-4,
   .mx-lg-4 {
@@ -8566,7 +8566,7 @@ button.bg-dark:focus {
   }
   .mb-xl-4,
   .my-xl-4 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.9rem !important;
   }
   .ml-xl-4,
   .mx-xl-4 {
@@ -8877,7 +8877,7 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 .text-danger {
-  color: #d11d2f !important;
+  color: #dc3545 !important;
 }
 
 a.text-danger:hover, a.text-danger:focus {
