@@ -44,11 +44,34 @@
             <a href="#" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
           </div>
       </div>
-      <br><p class="text-center small" style="color: #f0661b">¿No se ha registrado? Haga clic <a href="#">aquí</a></p>
+      <br><p class="text-center small" style="color: #f0661b">¿No se ha registrado? Haga clic <a href="#" data-toggle="modal" data-target="#myModal">aquí</a></p>
       {% if error %}
         <br><br>
         <span class="control-label text-danger"><strong>Ha ingresado sus datos incorrectos. Favor intente nuevamente</strong></span>
       {% endif %}		
+    </div>
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Ingrese sus datos</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            Modal body..
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+          
+        </div>
+      </div>
     </div>
 
     <script src="../static/js/jquery-3.3.1.min.js"></script>
