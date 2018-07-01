@@ -62,10 +62,7 @@ def home():
 			}
 			])
 			return render_template('index.html', usr = usr, loged = True, usuarios = users)
-		else:
-			return render_template('login.html', error = True)
-	
-
+	return render_template('login.html', error = True)
 
 if __name__ == '__main__':
 	app.debug = True

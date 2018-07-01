@@ -43,7 +43,7 @@ $(document).ready(function(){
         data: $('#register').serialize(),
         type: 'POST',
         success: function(response){
-          console.log(response);
+          
         },
         error: function(error){
           console.log(error);
@@ -54,7 +54,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  $("#iniciar").click(function(){
+  $("#form-ini").submit(function(){
     var correo = $('#email').val();
     var contras = $('#pass').val();
     if(correo.trim() == ''){
@@ -68,17 +68,7 @@ $(document).ready(function(){
       $('#pass').focus();
       return false;
     }else{
-      $.ajax({
-        url: '/home',
-        data: $('#form-ini').serialize(),
-        type: 'POST',
-        success: function(response){
-          console.log(response);
-        },
-        error: function(error){
-          console.log(error);
-        }
-      });
+      return true;
     }
   });
 });
