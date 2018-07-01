@@ -60,7 +60,7 @@
           </div>
           <div class="modal-body">
             <div class="alert alert-warning alert-dismissible fade show" id="alert-w" style="display: none"></div>
-            <form id="register">
+            <form id="register" action="register" method="POST">
               <div class="form-group">
                 <label>Nombre:</label>
                 <input type="text" class="form-control" id="Rname" placeholder="Ingrese nombre" name="Rname">
@@ -81,11 +81,11 @@
                 <label for="pwd">Repetir contraseña:</label>
                 <input type="password" class="form-control" id="RCpass" placeholder="Confirme contraseña" name="Rpass">
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-outline-dark" id="registrar" data-target="#register">Registrar</button>
+              </div>
             </form> 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-outline-dark" id="registrar">Registrar</button>
           </div>
         </div>
       </div>

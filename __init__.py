@@ -41,7 +41,12 @@ def register():
 	last_name = request.form['RlastName']
 	email = request.form['Remail']
 	password = request.form['Rpass']
-	return 'hola vale'
+	maxs_id = usuarios.find({},{"_id_user":1}).sort([("_id_user",-1)]).limit(1)
+	max_id = maxs_id[0]["_id_user"]
+	max_id += 1
+	usr = {"_id_user":max_id, "first_name":name, "last_name":last_name, "email":email, "password":password}
+	usuarios.insert(usr)
+	return render_template('index.html', usr = usr, loged = True)
 
 @app.route('/home', methods=['POST'])
 def home():

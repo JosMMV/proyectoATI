@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("#registrar").click(function(){
+  $("#register").submit(function(){
     var nombre = $('#Rname').val();
     var apellido = $('#RlastName').val();
     var correo = $('#Remail').val();
@@ -23,32 +23,22 @@ $(document).ready(function(){
     }else if(contras.trim() == ''){
       document.getElementById('alert-w').style.display = 'block';
       $('.alert-warning').text('El campo Contraseña no puede estar vacío.');
-      $('#pass').focus();
+      $('#Rpass').focus();
       return false;
     }else if(Ccontras.trim() == ''){
       document.getElementById('alert-w').style.display = 'block';
       $('.alert-warning').text('El campo Repetir contraseña no puede estar vacío.');
-      $('#Cpass').focus();
+      $('#RCpass').focus();
       return false;
     }else if(contras != Ccontras){
       document.getElementById('alert-w').style.display = 'block';
       $('.alert-warning').text('Contraseñas no coinciden. Verifique.');
-      $('#pass').text('');
-      $('#Cpass').text('');
-      $('#pass').focus();
+      $('#Rpass').text('');
+      $('#RCpass').text('');
+      $('#Rpass').focus();
       return false;
     }else{
-      $.ajax({
-        url: '/register',
-        data: $('#register').serialize(),
-        type: 'POST',
-        success: function(response){
-          
-        },
-        error: function(error){
-          console.log(error);
-        }
-      });
+      return true;
     }
   });
 });
