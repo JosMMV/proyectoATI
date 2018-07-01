@@ -18,20 +18,21 @@
     <div class="col-md-4 mx-auto px-5 pt-5 pb-4 mt-5 bg-success rounded text-center" style="border: 1px solid rgb(192, 136, 53)">
       <a href=""><img class="img-fluid" src="../static/img/logo.png"></a>
       <br><br>
-      <form class="form-group" action="home" method="POST">
+      <div class="alert alert-warning alert-dismissible fade show" id="alert-w-i" style="display: none"></div>
+      <form class="form-group" id="form-ini">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Correo</span>
           </div>
-          <input type="text" class="form-control" name="email">
+          <input id="email" type="text" class="form-control" name="email">
         </div>
         <div class="input-group mb-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Contraseña</span>
           </div>
-          <input type="password" class="form-control" name="pass">
+          <input id="pass" type="password" class="form-control" name="pass">
         </div>
-        <button type="submit" class="btn btn-outline-dark">Iniciar sesión</button>
+        <button type="button" class="btn btn-outline-dark" id="iniciar">Iniciar sesión</button>
       </form>
       <div>
         <hr class="or-hr">
@@ -58,7 +59,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="alert alert-warning" id="alert-w" style="display: none"></div>
+            <div class="alert alert-warning alert-dismissible fade show" id="alert-w" style="display: none"></div>
             <form id="register">
               <div class="form-group">
                 <label>Nombre:</label>
@@ -70,83 +71,27 @@
               </div>
               <div class="form-group">
                 <label for="email">Correo:</label>
-                <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="Remail">
+                <input type="email" class="form-control" id="Remail" placeholder="nombre@ejemplo.com" name="Remail">
               </div>
               <div class="form-group">
                 <label for="pwd">Contraseña:</label>
-                <input type="password" class="form-control" id="pass" placeholder="Ingrese contraseña" name="Rpass">
+                <input type="password" class="form-control" id="Rpass" placeholder="Ingrese contraseña" name="Rpass">
               </div>
               <div class="form-group">
                 <label for="pwd">Repetir contraseña:</label>
-                <input type="password" class="form-control" id="Cpass" placeholder="Confirme contraseña" name="Rpass">
+                <input type="password" class="form-control" id="RCpass" placeholder="Confirme contraseña" name="Rpass">
               </div>
             </form> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-outline-dark" id="registrar">Registrar</button>
+            <button type="button" class="btn btn-outline-dark" id="registrar">Registrar</button>
           </div>
         </div>
       </div>
     </div>
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/bootstrap.js"></script>
-    <script>
-      $(document).ready(function(){
-        $("#registrar").click(function(){
-          var nombre = $('#Rname').val();
-          var apellido = $('#RlastName').val();
-          var correo = $('#email').val();
-          var contras = $('#pass').val();
-          var Ccontras = $('#Cpass').val();
-          if(nombre.trim() == ''){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text("El campo Nombre no puede estar vacío.");
-            $('#Rname').focus();
-            return false;
-          }else if(apellido.trim() == ''){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text('El campo Apellido no puede estar vacío.');
-            $('#RlastName').focus();
-            return false;
-          }else if(correo.trim() == ''){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text('El campo Correo no puede estar vacío.');
-            $('#email').focus();
-            return false;
-          }else if(contras.trim() == ''){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text('El campo Contraseña no puede estar vacío.');
-            $('#pass').focus();
-            return false;
-          }else if(Ccontras.trim() == ''){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text('El campo Repetir contraseña no puede estar vacío.');
-            $('#Cpass').focus();
-            return false;
-          }else if(contras != Ccontras){
-            document.getElementById('alert-w').style.display = 'block';
-            $('.alert-warning').text('Contraseñas no coinciden. Verifique.');
-            $('#pass').text('');
-            $('#Cpass').text('');
-            $('#pass').focus();
-            return false;
-          }else{
-            $ajax({
-              url: "../__init__.py" ,
-              method: "POST",
-              data: $('#register').serialize(),
-              success: function(data){
-                if(data == 0){
-                  alert('Datos incorrectos');
-                }else{
-
-                }
-              }
-            })
-          }
-        });
-      });
-    </script>
+    <script src="../static/js/script.js"></script>
   </body>
 </html>

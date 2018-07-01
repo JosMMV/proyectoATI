@@ -35,16 +35,20 @@ def index():
 def login():
 	return render_template('login.html')
 
-#@app.route('/register', methods = ['POST'])
-#def register():
-	
+@app.route('/register', methods = ['POST'])
+def register():
+	name = request.form['Rname']
+	last_name = request.form['RlastName']
+	email = request.form['Remail']
+	password = request.form['Rpass']
+	return 'hola vale'
 
 @app.route('/home', methods=['POST'])
 def home():
-	user = request.form['email']
+	email = request.form['email']
 	password = request.form['pass']
 
-	usr = usuarios.find_one({ "user_name": user })
+	usr = usuarios.find_one({ "email": email })
 	if usr:
 		if usr["password"] == password:
 			users = usuarios.aggregate([
@@ -58,7 +62,9 @@ def home():
 			}
 			])
 			return render_template('index.html', usr = usr, loged = True, usuarios = users)
-	return render_template('login.html', error = True)
+		else:
+			return render_template('login.html', error = True)
+	
 
 
 if __name__ == '__main__':
