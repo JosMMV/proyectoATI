@@ -58,7 +58,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <form>
+            <div class="alert alert-warning" id="alert-w" style="display: none"></div>
+            <form id="register">
               <div class="form-group">
                 <label>Nombre:</label>
                 <input type="text" class="form-control" id="Rname" placeholder="Ingrese nombre" name="Rname">
@@ -83,12 +84,69 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" onclick="registrar()" class="btn btn-outline-dark">Registrar</button>
+            <button type="submit" class="btn btn-outline-dark" id="registrar">Registrar</button>
           </div>
         </div>
       </div>
     </div>
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/bootstrap.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#registrar").click(function(){
+          var nombre = $('#Rname').val();
+          var apellido = $('#RlastName').val();
+          var correo = $('#email').val();
+          var contras = $('#pass').val();
+          var Ccontras = $('#Cpass').val();
+          if(nombre.trim() == ''){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text("El campo Nombre no puede estar vacío.");
+            $('#Rname').focus();
+            return false;
+          }else if(apellido.trim() == ''){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text('El campo Apellido no puede estar vacío.');
+            $('#RlastName').focus();
+            return false;
+          }else if(correo.trim() == ''){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text('El campo Correo no puede estar vacío.');
+            $('#email').focus();
+            return false;
+          }else if(contras.trim() == ''){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text('El campo Contraseña no puede estar vacío.');
+            $('#pass').focus();
+            return false;
+          }else if(Ccontras.trim() == ''){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text('El campo Repetir contraseña no puede estar vacío.');
+            $('#Cpass').focus();
+            return false;
+          }else if(contras != Ccontras){
+            document.getElementById('alert-w').style.display = 'block';
+            $('.alert-warning').text('Contraseñas no coinciden. Verifique.');
+            $('#pass').text('');
+            $('#Cpass').text('');
+            $('#pass').focus();
+            return false;
+          }else{
+            $ajax({
+              url: "../__init__.py" ,
+              method: "POST",
+              data: $('#register').serialize(),
+              success: function(data){
+                if(data == 0){
+                  alert('Datos incorrectos');
+                }else{
+
+                }
+              }
+            })
+          }
+        });
+      });
+    </script>
   </body>
 </html>
