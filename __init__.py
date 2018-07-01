@@ -41,7 +41,7 @@ def login():
 
 @app.route('/home', methods=['POST'])
 def home():
-	user = request.form['user']
+	user = request.form['email']
 	password = request.form['pass']
 
 	usr = usuarios.find_one({ "user_name": user })

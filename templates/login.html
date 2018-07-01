@@ -21,9 +21,9 @@
       <form class="form-group" action="home" method="POST">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">Usuario</span>
+            <span class="input-group-text">Correo</span>
           </div>
-          <input type="text" class="form-control" name="user">
+          <input type="text" class="form-control" name="email">
         </div>
         <div class="input-group mb-4">
           <div class="input-group-prepend">
@@ -50,30 +50,44 @@
         <span class="control-label text-danger"><strong>Ha ingresado sus datos incorrectos. Favor intente nuevamente</strong></span>
       {% endif %}		
     </div>
-    <div class="modal" id="myModal">
+    <div class="modal fade" id="myModal">
       <div class="modal-dialog">
         <div class="modal-content">
-        
-          <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Ingrese sus datos</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          
-          <!-- Modal body -->
           <div class="modal-body">
-            Modal body..
+            <form>
+              <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" class="form-control" id="Rname" placeholder="Ingrese nombre" name="Rname">
+              </div>
+              <div class="form-group">
+                <label>Apellido:</label>
+                <input type="text" class="form-control" id="RlastName" placeholder="Ingrese apellido" name="RlastName">
+              </div>
+              <div class="form-group">
+                <label for="email">Correo:</label>
+                <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="Remail">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Contraseña:</label>
+                <input type="password" class="form-control" id="pass" placeholder="Ingrese contraseña" name="Rpass">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Repetir contraseña:</label>
+                <input type="password" class="form-control" id="Cpass" placeholder="Confirme contraseña" name="Rpass">
+              </div>
+            </form> 
           </div>
-          
-          <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+            <button type="submit" onclick="registrar()" class="btn btn-outline-dark">Registrar</button>
           </div>
-          
         </div>
       </div>
     </div>
-
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/bootstrap.js"></script>
   </body>
