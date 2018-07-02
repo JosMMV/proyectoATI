@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, TextField, PasswordField, HiddenField
+from wtforms import Form, TextField, PasswordField, HiddenField
 from wtforms.fields.html5 import EmailField
 
 def length_honeypot(form, field):

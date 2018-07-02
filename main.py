@@ -57,29 +57,36 @@ def register():
 	max_id += 1
 	usr = {"_id_user":max_id, "first_name":name, "last_name":last_name, "email":email, "password":password}
 	usuarios.insert(usr)
-	return render_template('index.html', usr = usr, loged = True)
+	session['username'] = email
+	return redirect(url_for('home'))
 
-@app.route('/home', methods=['POST'])
-def home():
+@app.route('/logon', methods=['POST'])
+def logon():
 	form = forms.Formulario(request.form)
 	email = form.email.data
 	password = form.password.data
 	usr = usuarios.find_one({ "email": email })
 	if usr:
 		if usr["password"] == password:
-			users = usuarios.aggregate([
-			{"$lookup":
-				{
-					"from": "image",
-					"localField": "images._id_image",
-					"foreignField": "_id_image",
-					"as": "user_images"
-				}
-			}
-			])
 			session['username'] = email
-			return render_template('index.html', usr = usr, loged = True, usuarios = users)
-	return render_template('login.html', error = True, form = form)
+			return redirect(url_for('home'))
+	return redirect(url_for('login'))
+
+@app.route('/home', methods=['POST','GET'])
+def home():
+	if 'username' in session:
+		username = session['username']
+		users = usuarios.aggregate([
+		{"$lookup":
+			{
+				"from": "image",
+				"localField": "images._id_image",
+				"foreignField": "_id_image",
+				"as": "user_images"
+			}
+		}
+		])
+		return render_template('index.html', usr = username, loged = True, usuarios = users)
 
 @app.route('/photos')
 def photos():

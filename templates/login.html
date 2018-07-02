@@ -18,7 +18,7 @@
     <div class="col-md-4 mx-auto px-5 pt-5 pb-4 mt-5 bg-success rounded text-center" style="border: 1px solid rgb(192, 136, 53)">
       <a href=""><img class="img-fluid" src="../static/img/logo.png"></a>
       <br><br>
-      <form class="form-group" id="form-ini" action="home" method="POST">
+      <form class="form-group" id="form-ini" action="logon" method="POST">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Correo</span>
@@ -85,6 +85,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-outline-dark" id="registrar" data-target="#register">Registrar</button>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
               </div>
             </form> 
           </div>
