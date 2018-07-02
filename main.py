@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, session, redirect, url_for
+from flask import Flask, render_template, request, make_response, session, redirect, url_for, flash
 from pymongo import *
 import forms
 from flask_wtf.csrf import CSRFProtect
@@ -70,6 +70,8 @@ def logon():
 		if usr["password"] == password:
 			session['username'] = email
 			return redirect(url_for('home'))
+	error_message = 'Ha ingresado sus datos incorrectos. Favor intente nuevamente.'
+	flash(error_message)
 	return redirect(url_for('login'))
 
 @app.route('/home', methods=['POST','GET'])

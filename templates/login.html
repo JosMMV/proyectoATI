@@ -47,10 +47,14 @@
           </div>
       </div>
       <br><p class="text-center small" style="color: #f0661b">¿No se ha registrado? Haga clic <a href="#" data-toggle="modal" data-target="#myModal">aquí</a></p>
-      {% if error %}
-        <br><br>
-        <span class="control-label text-danger"><strong>Ha ingresado sus datos incorrectos. Favor intente nuevamente</strong></span>
-      {% endif %}		
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <br>
+          <span class="control-label text-danger"><strong>{{message}}</strong></span>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}		
     </div>
     <div class="modal fade" id="myModal">
       <div class="modal-dialog">
