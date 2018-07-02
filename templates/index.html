@@ -26,7 +26,7 @@
             <li class="nav-item" class="active"><a class="nav-link" href="index.html">Inicio</a></li>
             {% if loged %}
             <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="/photos?usuarios={{usuarios}}">Perfil</a></li>
+            <li class="nav-item"><a class="nav-link" href="/photos">Perfil</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
             {% else %}
             <li class="nav-item"><a class="nav-link" href="#">Registrarse</a></li>
@@ -87,6 +87,7 @@
           </div>
         </div>
       </div>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     </section>
 
     <footer>

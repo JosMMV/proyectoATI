@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response, session
 from pymongo import *
 import forms
+from flask_wtf.csrf import CSRFProtect
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
+app.secret_key = 'my_secret_key'
+csrf = CSRFProtect(app)
 
 # MongoDB Connection with PyMongo
 client = MongoClient()
@@ -52,9 +55,9 @@ def register():
 
 @app.route('/home', methods=['POST'])
 def home():
-	email = request.form['email']
-	password = request.form['password']
-
+	form = forms.Formulario(request.form)
+	email = form.email.data
+	password = form.password.data
 	usr = usuarios.find_one({ "email": email })
 	if usr:
 		if usr["password"] == password:
@@ -68,15 +71,32 @@ def home():
 				}
 			}
 			])
+			session['username'] = email
 			return render_template('index.html', usr = usr, loged = True, usuarios = users)
-	form = forms.Formulario()
 	return render_template('login.html', error = True, form = form)
 
 @app.route('/photos')
 def photos():
-	users = request.args.get('usuarios','none')
-	usr = request.args.get('usuario','none')
-	return render_template('photos.html',usr = usr, usuarios = users)
+	if 'username' in session:
+		username = session['username']
+		print (username)
+		user = usuarios.aggregate([
+		{"$match":
+			{
+				"email": username
+			}
+		},
+		{"$lookup":
+			{
+				"from": "image",
+				"localField": "images._id_image",
+				"foreignField": "_id_image",
+				"as": "user_images"
+			}
+		}
+		])
+		print (user["first_name"])
+		return render_template('photos.html', user = user)
 
 if __name__ == '__main__':
 	app.debug = True
