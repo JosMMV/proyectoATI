@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from pymongo import *
+
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
@@ -48,7 +49,7 @@ def register():
 	usuarios.insert(usr)
 	return render_template('index.html', usr = usr, loged = True)
 
-@app.route('/home', methods=['POST'])
+@app.route('/home/<email>', methods=['POST'])
 def home():
 	email = request.form['email']
 	password = request.form['pass']
@@ -68,6 +69,12 @@ def home():
 			])
 			return render_template('index.html', usr = usr, loged = True, usuarios = users)
 	return render_template('login.html', error = True)
+
+@app.route('/photos')
+def photos():
+	users = request.args.get('usuarios','none')
+	usr = request.args.get('usuario','none')
+	return render_template('photos.html',usr = usr, usuarios = users)
 
 if __name__ == '__main__':
 	app.debug = True

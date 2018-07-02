@@ -11,6 +11,6 @@ db.image.insert({_id_image:6, src:"../static/img/img6.jpg", tittle:"Segunda imag
 db.image.insert({_id_image:7, src:"../static/img/img7.jpg", tittle:"Tercera imagen de Kevin", date:"14/03/18", description:"Descripción 3 de Kevin", likes:[{_id_user:1, calif:3}], comments:[{_id_user:1, comment:"Otro comentario cualquiera"}], conf: true})
 db.image.insert({_id_image:8, src:"../static/img/img8.jpg", tittle:"Cuarta imagen de José", date:"23/04/18", description:"Descripción 4 de José", likes:[{_id_user:3, calif:4}], comments:[], conf: true})
 
-/*db.users.insert({id:, first_name:"", last_name:"", email:"",password:"",  birthdate:"", facebook:"", twitter:"", images:[{id_image:}, {id_image:}, {id_image:}], profile_image:"../static/img/img10.jpg", friendships:[{_id_user:}, {_id_user:}]})
+/*db.users.insert({_id_user:, first_name:"", last_name:"", email:"",password:"",  birthdate:"", facebook:"", twitter:"", images:[{id_image:}, {id_image:}, {id_image:}], profile_image:"../static/img/img10.jpg", friendships:[{_id_user:}, {_id_user:}]})
 db.image.insert({_id_image:, src:"../static/img/img.jpg",  tittle:"", date:"", description:"", likes:[{_id_user:, calif:}], comments:[{_id_user:, comment:""}, conf: true]})
 */
