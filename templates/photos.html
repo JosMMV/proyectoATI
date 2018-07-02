@@ -29,7 +29,7 @@
             <li class="nav-item" class="active"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
             <li class="nav-item"><a class="nav-link" href="/photos">Perfil</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
             {% if user %}
             <li class="nav-item"><a class="nav-link" href="#">{{user.email}}</a></li>
             {% endif %}
@@ -44,7 +44,7 @@
           <div class="col-md-8 col-md-offset-2">
             <h1 class="page-header">Fotos</h1>
             <ul class="photos gallery-parent">
-              {% for usr_image in user.user_images %}
+              {% for usr_image in user[0].user_images %}
               <li><a href="{{usr_image.src}}" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="{{usr_image.description}}" data-toggle="lightbox"><img src="{{usr_image.src}}" class="img-thumbnail" alt=""></a></li>
               {% endfor %}
             </ul>
@@ -62,8 +62,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/ekko-lightbox.js"></script>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/ekko-lightbox.js"></script>
   </body>
 </html>

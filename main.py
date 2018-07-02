@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, session
+from flask import Flask, render_template, request, make_response, session, redirect, url_for
 from pymongo import *
 import forms
 from flask_wtf.csrf import CSRFProtect
@@ -17,7 +17,6 @@ imagenes = db.image
 # Routes Definition
 @app.route('/')
 def index():
-	form = forms.Formulario()
 	users = usuarios.aggregate([
 	{"$match":
 		{
@@ -34,11 +33,18 @@ def index():
     }
   }
 	])
-	return render_template('login.html', usuarios = users, form = form)
+	return render_template('index.html', usuarios = users)
+
+@app.route('/logout')
+def logout():
+	if 'username' in session:
+		session.pop('username')
+	return redirect(url_for('login'))
 
 @app.route('/login')
 def login():
-	return render_template('login.html')
+	form = forms.Formulario()
+	return render_template('login.html', form = form)
 
 @app.route('/register', methods = ['POST'])
 def register():
@@ -95,8 +101,10 @@ def photos():
 			}
 		}
 		])
-		print (user["first_name"])
-		return render_template('photos.html', user = user)
+		new_user = list(user)
+		print (new_user[0]["first_name"])
+		print (new_user)
+		return render_template('photos.html', user = new_user)
 
 if __name__ == '__main__':
 	app.debug = True
