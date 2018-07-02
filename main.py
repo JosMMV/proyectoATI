@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from pymongo import *
-
+import forms
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
@@ -14,6 +14,7 @@ imagenes = db.image
 # Routes Definition
 @app.route('/')
 def index():
+	form = forms.Formulario()
 	users = usuarios.aggregate([
 	{"$match":
 		{
@@ -30,7 +31,7 @@ def index():
     }
   }
 	])
-	return render_template('login.html', usuarios = users)
+	return render_template('login.html', usuarios = users, form = form)
 
 @app.route('/login')
 def login():
@@ -49,10 +50,10 @@ def register():
 	usuarios.insert(usr)
 	return render_template('index.html', usr = usr, loged = True)
 
-@app.route('/home/<email>', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def home():
 	email = request.form['email']
-	password = request.form['pass']
+	password = request.form['password']
 
 	usr = usuarios.find_one({ "email": email })
 	if usr:
@@ -68,7 +69,8 @@ def home():
 			}
 			])
 			return render_template('index.html', usr = usr, loged = True, usuarios = users)
-	return render_template('login.html', error = True)
+	form = forms.Formulario()
+	return render_template('login.html', error = True, form = form)
 
 @app.route('/photos')
 def photos():

@@ -47,9 +47,9 @@ $(document).ready(function(){
   $("#form-ini").submit(function(){
     var correo = $('#email').val();
     var contras = $('#pass').val();
-    if(correo.trim() == ''){
+    if(correo.trim() == '' || correo.length < 9){
       document.getElementById('alert-w-i').style.display = 'block';
-      $('#alert-w-i').text("El campo Correo no puede estar vacío.");
+      $('#alert-w-i').text("Ingrese un correo válido.");
       $('#email').focus();
       return false;
     }else if(contras.trim() == ''){
@@ -60,5 +60,17 @@ $(document).ready(function(){
     }else{
       return true;
     }
+  });
+});
+
+$(document).ready(function(){
+  $('#email').keypress(function(){
+    $('#alert-w-i').css("display","none");
+  });
+});
+
+$(document).ready(function(){
+  $('#password').keypress(function(){
+    $('#alert-w-i').css("display","none");
   });
 });
