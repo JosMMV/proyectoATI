@@ -43,8 +43,11 @@ def logout():
 
 @app.route('/login')
 def login():
-	form = forms.Formulario()
-	return render_template('login.html', form = form)
+	if 'username' in session:
+		return redirect(url_for('home'))
+	else:
+		form = forms.Formulario()
+		return render_template('login.html', form = form)
 
 @app.route('/register', methods = ['POST'])
 def register():
@@ -88,8 +91,26 @@ def home():
 		}
 		])
 		return render_template('index.html', usr = username, loged = True, usuarios = users)
+	else:
+		users = usuarios.aggregate([
+		{"$match":
+			{
+				"conf": True
+			}
 
-@app.route('/photos')
+		},
+		{"$lookup":
+			{
+				"from": "image",
+				"localField": "images._id_image",
+				"foreignField": "_id_image",
+				"as": "user_images"
+			}
+		}
+		])
+		return render_template('index.html', usuarios = users)
+
+@app.route('/profile')
 def photos():
 	if 'username' in session:
 		username = session['username']

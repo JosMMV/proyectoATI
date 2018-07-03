@@ -26,13 +26,10 @@
         </button>
         <div id="navb" class="navbar-collapse collapse">
           <ul class="navbar-nav">
-            <li class="nav-item" class="active"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="/photos">Perfil</a></li>
+            <li class="nav-item"><a class="nav-link" href="/profile">Perfil</a></li>
             <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
-            {% if user %}
-            <li class="nav-item"><a class="nav-link" href="#">{{user.email}}</a></li>
-            {% endif %}
           </ul>
         </div>
       </nav>
@@ -44,15 +41,18 @@
           <div class="col-md-8 col-md-offset-2">
             <h1 class="page-header">Fotos</h1>
             <ul class="photos gallery-parent">
-              {% for usr_image in user[0].user_images %}
-              <li><a href="{{usr_image.src}}" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="{{usr_image.description}}" data-toggle="lightbox"><img src="{{usr_image.src}}" class="img-thumbnail" alt=""></a></li>
-              {% endfor %}
+              <li><a href="../static/img/img1.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img1.jpg" class="img-thumbnail" alt=""></a></li>
+              <li><a href="../static/img/img2.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img2.jpg" class="img-thumbnail" alt=""></a></li>
+              <li><a href="../static/img/img3.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img3.jpg" class="img-thumbnail" alt=""></a></li>
+              <li><a href="../static/img/img4.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img4.jpg" class="img-thumbnail" alt=""></a></li>
+              <li><a href="../static/img/img5.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img5.jpg" class="img-thumbnail" alt=""></a></li>
+              <li><a href="../static/img/img6.jpg" data-hover="tooltip" data-placement="top" title="image" data-gallery="mygallery" data-parent=".gallery-parent" data-title="title" data-footer="esto es un footer" data-toggle="lightbox"><img src="../static/img/img6.jpg" class="img-thumbnail" alt=""></a></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
     <footer>
       <div class="container">
         <p>Facegram Copyright &copy, 2018</p>
@@ -62,8 +62,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-    <script src="../static/js/ekko-lightbox.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ekko-lightbox.js"></script>
   </body>
 </html>
