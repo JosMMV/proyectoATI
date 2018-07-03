@@ -70,8 +70,7 @@ def logon():
 		if usr["password"] == password:
 			session['username'] = email
 			return redirect(url_for('home'))
-	error_message = 'Ha ingresado sus datos incorrectos. Favor intente nuevamente.'
-	flash(error_message)
+	flash('Ha ingresado sus datos incorrectos. Favor intente nuevamente.')
 	return redirect(url_for('login'))
 
 @app.route('/home', methods=['POST','GET'])
