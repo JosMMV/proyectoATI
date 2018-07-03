@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, make_response, session, redirect, url_for, flash
 from pymongo import *
-import forms
 from flask_wtf.csrf import CSRFProtect
+from werkzeug.security import generate_password_hash, check_password_hash
+import forms
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 app.secret_key = 'my_secret_key'
@@ -55,13 +56,19 @@ def register():
 	last_name = request.form['RlastName']
 	email = request.form['Remail']
 	password = request.form['Rpass']
-	maxs_id = usuarios.find({},{"_id_user":1}).sort([("_id_user",-1)]).limit(1)
-	max_id = maxs_id[0]["_id_user"]
-	max_id += 1
-	usr = {"_id_user":max_id, "first_name":name, "last_name":last_name, "email":email, "password":password}
-	usuarios.insert(usr)
-	session['username'] = email
-	return redirect(url_for('home'))
+	validate_user = usuarios.find_one({"email":email})
+	if validate_user:
+		flash('El correo suministrado ya se encuentra registrado.')
+		return redirect(url_for('login'))
+	else:
+		maxs_id = usuarios.find({},{"_id_user":1}).sort([("_id_user",-1)]).limit(1)
+		max_id = maxs_id[0]["_id_user"]
+		max_id += 1
+		passwordHashed = generate_password_hash(password)
+		usr = {"_id_user":max_id, "first_name":name, "last_name":last_name, "email":email, "password":passwordHashed}
+		usuarios.insert(usr)
+		session['username'] = email
+		return redirect(url_for('home'))
 
 @app.route('/logon', methods=['POST'])
 def logon():
@@ -70,7 +77,7 @@ def logon():
 	password = form.password.data
 	usr = usuarios.find_one({ "email": email })
 	if usr:
-		if usr["password"] == password:
+		if check_password_hash(usr["password"], password):
 			session['username'] = email
 			return redirect(url_for('home'))
 	flash('Ha ingresado sus datos incorrectos. Favor intente nuevamente.')
@@ -134,6 +141,7 @@ def photos():
 		print (new_user[0]["first_name"])
 		print (new_user)
 		return render_template('photos.html', user = new_user)
+	return redirect(url_for('login'))
 
 if __name__ == '__main__':
 	app.debug = True
