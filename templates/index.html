@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,7 +13,7 @@
     <link href="../static/css/font-awesome.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="bg-landing" style="background-color: #f9fbe0">
     <header>
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="/home"><img class="img-fluid" src="../static/img/logo.png" alt="logo" style="width:auto"></a>
@@ -36,35 +35,40 @@
       </nav>
     </header>
 
-    <section class="mt-5">
+    <section class="mt-5 bg-landing" style="background-color: #f9fbe0">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             {% for usuario in usuarios %}
               {% for usrImage in usuario.user_images %}
-              <div class="thumbnail panel-default post">
+              <div class="thumbnail panel-default post" style="border: 2px solid orange; background-color: #00000082; color: white;">
                 <div class="panel-body">
                   <div class="row">
+                    <!-- <div class="col-sm-12 thumbnail" style="margin-left: 15px; margin-right: 15px; flex: 0 0 96% !important;">
+                      <a href="#" class="post-avatar" style=""><img class="card-img" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;" src="{{usuario.profile_image}}"></a>
+                      <span style="margin-left: 20px;">{{usuario.first_name}} {{usuario.last_name}} ha publicado una nueva imagen.</span>
+                    </div> -->
                     <div class="col-sm-2">
-                      <a href="#" class="post-avatar thumbnail"><img class="card-img" src="{{usuario.profile_image}}"><div class="text-center">{{usuario.first_name}} {{usuario.last_name}}</div></a>
-                      <div class="likes text-center">7 Likes</div>
+                      <a href="#" class="post-avatar thumbnail" style="border: 2px solid orange; background-color: #0e0e0e61;"><img class="card-img" src="{{usuario.profile_image}}"><div class="text-center">{{usuario.first_name}} {{usuario.last_name}}</div></a>
+                      <div class="likes text-center"><img style="width: 50px" src="../static/img/heart.png"> <b>7 Likes</b> </div>
+                      
                     </div>
                     <div class="col-sm-10">
-                      <div class="imageHome" style="text-align: center">
+                      <div class="imageHome" style="text-align: center; background-color: black; border: 2px solid orange;">
                         <img class="img-fluid" src="{{usrImage.src}}" title="{{usrImage.tittle}}">
-                        <br><br>
-                        <div style="text-align: left">
-                          <p>{{usrImage.description}}</p>
-                        </div>
+                      </div>
+                      <div style="text-align: left">
+                        <br>
+                        <p>{{usrImage.description}}</p>
                       </div>
                       <p class="post-actions"><a href="#">Comentar</a> - <a href="#">Puntuar</a></p>
                       <div class="comments">
                         {% for comment in usrImage.comments %}
-                          <div class="comment">
-                            <a href="#" class="comment-avatar pull-left">josmed</a>
-                            <div class="comment-text">
+                          <div class="comment" style="color: black; padding: 10px 10px 0px 15px; background-color: #dddddd; border-radius: 0px; border-color: #dddddd; box-shadow: 1px 1px 7px 0px #18c0f3;">
+                            <p><a href="#" class="comment-avatar pull-left">josmed &nbsp;</a> {{comment.comment}}</p>
+                            <!-- <div class="comment-text">
                               <p>{{comment.comment}}</p>
-                            </div>
+                            </div> -->
                           </div>
                         {% endfor %}
                         <div class="clearfix"></div>
@@ -72,9 +76,9 @@
                       <div class="comment-form">
                         <form class="form-inline">
                           <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Ingrese comentario">
+                            <input type="text" class="form-control" placeholder="Ingrese comentario" style="color: black; background-color: #e8d0cc; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
                           </div>
-                          <button type="submit" class="btn btn-default">Añadir</button>
+                          <button type="submit" class="btn btn-default" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;">Añadir</button>
                         </form>
                       </div>
                       <div class="clearfix"></div>
