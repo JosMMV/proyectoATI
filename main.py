@@ -3,10 +3,22 @@ from pymongo import *
 from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
 import forms
+import facebook
+import tweepy
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 app.secret_key = 'my_secret_key'
 csrf = CSRFProtect(app)
+
+#-----------Twitter-----------------------
+CONSUMER_KEY = '7ZuCuDzEhVOFc9EWcHSJ4UMu'
+CONSUMER_SECRET = 'F3pxpMu0YuNB6s19tspeEeU5SfSwRYCwkleVPdshYyixw7xF8Z'
+ACCESS_TOKEN = '815655552-icBvaDwQiPUw9ujidRj9jJ4vlWa4dOyAF75pnOzj'
+ACCESS_TOKEN_SECRET = '0q5sBtP7DMEmZ1lnykU114ApD7pnX4kyB1FgnGscv8l4G'
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
+api = None
 
 # MongoDB Connection with PyMongo
 client = MongoClient()
@@ -16,6 +28,28 @@ usuarios = db.user
 imagenes = db.image
 
 # Routes Definition
+
+@app.route('/twitter',methods=['POST'])
+def twitter_login():
+	global api
+	api = tweepy.API(auth)
+	user = api.me()
+	return user.screen_name
+
+@app.route('/t_login', methods=['POST'])
+def t_login():
+	userT  = request.form['userNameT']
+
+	#Iniciamos con Twitter
+	user = usuarios.find_one({ "userNameT": userT })
+
+	if user is None:
+		return render_template('index.html', error = 5, data = newPost("Publico",None))
+	else:
+		session['username'] = user['userName']
+		session['nombre'] = user["nombre"]+" "+user["apellido"]
+		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
+
 @app.route('/')
 def index():
 	users = usuarios.aggregate([
